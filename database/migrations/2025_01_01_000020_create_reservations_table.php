@@ -15,7 +15,7 @@ return new class extends Migration
             $table->char('room_id', 36)->nullable();
             $table->date('check_in_date');
             $table->date('check_out_date');
-            $table->integer('num_nights')->storedAs('julianday(check_out_date) - julianday(check_in_date)');
+            $table->integer('num_nights')->storedAs('DATEDIFF(check_out_date, check_in_date)');
             $table->enum('status', ['pending', 'confirmed', 'checked_in', 'checked_out', 'cancelled'])->default('pending');
             $table->decimal('total_amount', 10, 2);
             $table->text('notes')->nullable();
